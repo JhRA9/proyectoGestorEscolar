@@ -19,7 +19,7 @@ include ('layout/parte1.php');
   <!-- /.content-wrapper -->
 
 <?php 
-include ('layout/parte2.php');
-include ('../layout/mostrarMensajes.php')
+include ('../admin/layout/parte2.php');
+include ('../layout/mostrarMensajes.php');
 ?>
 

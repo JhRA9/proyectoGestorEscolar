@@ -14,7 +14,7 @@ include('../../config/controllers/roles/listado_roles.php');
         </div>
         <div class="row">
         <div class="col-md-6">
-            <div class="card card-primary shadow-none">
+            <div class="card card-primary shadow-none">   
               <div class="card-header">
                 <h3 class="card-title">Roles registrados</h3>
                 <div class="card-tools">
@@ -22,7 +22,7 @@ include('../../config/controllers/roles/listado_roles.php');
                 </div>
               </div>
               <div class="card-body">
-              <table class="table table-striped table-bordered">
+              <table id="example1" class="table table-striped table-bordered">
             <thead>
               <tr>
                 <th><center>#</center></th>
@@ -42,9 +42,12 @@ include('../../config/controllers/roles/listado_roles.php');
                 <td><?=$rol['nombre_rol']?></td>
                 <td style="text-align: center">
                   <div class="btn-group" role="group" aria-label="Basic example">
-                  <button type="button" class="btn btn-secondary btn-sm btn-info"><i class="bi bi-eye"></i></button>
-                  <button type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></button>
-                  <button type="button" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                  <a href="show.php?id=<?=$id_rol;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
+                  <a href="edit.php?id=<?=$id_rol;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                  <form action="<?=APP_URL;?>/config/controllers/roles/delete.php" method="POST">
+                    <input type="text" value="<?=$id_rol;?>" hidden name="id_rol">
+                  <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>
+                  </form>
                   </div>
               </td>
               </tr>
@@ -65,3 +68,11 @@ include ('../../admin/layout/parte2.php');
 include ('../../layout/mostrarMensajes.php');
 ?>
 
+<script>
+  $(function () {
+    $("#example1").DataTable({
+      "responsive": true, "lengthChange": false, "autoWidth": false,
+      
+    }).buttons().container().appendTo('#example1_wrapper .col-md-6:eq(0)');
+  });
+</script>

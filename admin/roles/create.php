@@ -1,7 +1,6 @@
 <?php
 include ('../../config/config.php');
-include ('../layout/parte1.php');
-include('../../config/controllers/roles/listado_roles.php');
+include ('../../admin/layout/parte1.php');
 ?>
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -10,7 +9,7 @@ include('../../config/controllers/roles/listado_roles.php');
       <div class="content">
       <div class="container">
         <div class="row">
-          <h1>Creacion de nuevo rol</h1><br>
+          <h1>Creacion de nuevo rol</h1>
         </div>
         <br>
         <div class="row">
