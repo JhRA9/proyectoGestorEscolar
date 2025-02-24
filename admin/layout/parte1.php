@@ -138,7 +138,6 @@ if(isset($_SESSION['sesion email'])){
           </li>
           <li class="nav-item">
             <a href="#" class="nav-link active">
-              
               <p>
               <i class="bi bi-people-fill"></i>
                 Usuarios
@@ -149,6 +148,22 @@ if(isset($_SESSION['sesion email'])){
                 <a href="<?=APP_URL;?>/admin/usuarios" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>Listado de usuarios</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              <p>
+              <i class="bi bi-book-half"></i>
+                Materias
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=APP_URL;?>/admin/materias" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de materias</p>
                 </a>
               </li>
             </ul>

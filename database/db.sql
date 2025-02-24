@@ -32,3 +32,16 @@ CREATE TABLE usuarios (
 INSERT INTO usuarios (nombres, rol_id, email, password, hora_creacion, estado)    
 VALUES ('Jhon Perez', '1', 'admin@admin.com', '12345678', '2025-02-19 00:07:00', '1');
 
+CREATE TABLE materias (
+
+  id_materia      INT (11) NOT NULL AUTO_INCREMENT PRIMARY KEY,
+  nombre_materia         VARCHAR (255) NOT NULL,
+
+  hora_creacion   DATETIME NULL,
+  hora_actualizacion DATETIME NULL,
+  estado        VARCHAR (11)
+
+)ENGINE=InnoDB;
+INSERT INTO materias (nombre_materia,hora_creacion,estado)
+VALUES ('MATEMÁTICA','2023-12-28 20:29:10','1');
+
