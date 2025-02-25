@@ -33,6 +33,7 @@ include('../../config/controllers/tareas/index.php');
                                         <th><center>Hora de Entrega</center></th>
                                         <th><center>Estado</center></th>
                                         <th><center>Materia</center></th>
+                                        <th><center>Archivo</center></th>
                                         <th><center>Acciones</center></th>
                                     </tr>
                                 </thead>
@@ -51,6 +52,13 @@ include('../../config/controllers/tareas/index.php');
                                         <td><?=$tarea['hora_entrega']?></td>
                                         <td><?=$tarea['estado']?></td>
                                         <td><?=$tarea['materia']?></td>
+                                        <td>
+                                            <?php if ($tarea['ruta_archivo']): ?>
+                                                <a href="<?= APP_URL . 'uploads/' . basename($tarea['ruta_archivo']) ?>" target="_blank">Ver archivo</a>
+                                            <?php else: ?>
+                                                No hay archivo
+                                            <?php endif; ?>
+                                        </td>
                                         <td style="text-align: center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="show.php?id=<?=$id_tarea;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>

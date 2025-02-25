@@ -42,10 +42,16 @@ $materias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                     </div>
                                 </div>
                                 <div class="row">
-                                    <div class="col-md-12">
+                                    <div class="col-md-6">
                                         <div class="form-group">
                                             <label for="">Fecha de Entrega</label>
                                             <input type="date" class="form-control" name="fecha_entrega" value="<?= $tarea['fecha_entrega'] ?>" required>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="">Hora de Entrega</label>
+                                            <input type="time" class="form-control" name="hora_entrega" value="<?= $tarea['hora_entrega'] ?>" required>
                                         </div>
                                     </div>
                                 </div>

@@ -27,6 +27,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $sentencia = $pdo->prepare("INSERT INTO archivos (id_tarea, ruta_archivo) VALUES (?, ?)");
         $sentencia->execute([$id_tarea, $ruta_archivo]);
 
+        // Cambiar el estado de la tarea a "completado"
+        $sentencia = $pdo->prepare("UPDATE tareas SET estado = 'completado' WHERE id_tarea = ?");
+        $sentencia->execute([$id_tarea]);
+
         header('Location: ' . APP_URL . 'admin/tareas/index.php');
         exit();
     } else {
