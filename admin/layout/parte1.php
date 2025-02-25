@@ -168,6 +168,25 @@ if(isset($_SESSION['sesion email'])){
               </li>
             </ul>
           </li>
+
+          <li class="nav-item">
+            <a href="#" class="nav-link active">
+              
+              <p>
+              <i class="bi bi-plus-slash-minus"></i>
+                Tareas
+              </p>
+            </a>
+            <ul class="nav nav-treeview">
+              <li class="nav-item">
+                <a href="<?=APP_URL;?>/admin/tareas/" class="nav-link">
+                  <i class="far fa-circle nav-icon"></i>
+                  <p>Listado de tareas</p>
+                </a>
+              </li>
+            </ul>
+          </li>
+
           <li class="nav-item">
             <a href="<?=APP_URL;?>/login/logout.php" class="nav-link" style="background-color: #eb2d14;">
               <i class="bi bi-door-open"></i>
