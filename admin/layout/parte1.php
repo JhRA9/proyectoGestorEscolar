@@ -1,7 +1,8 @@
 <?php
-session_start();
+if (session_status() == PHP_SESSION_NONE) {
+    session_start();
+}
 if(isset($_SESSION['sesion email'])){
-    // echo "El usuario si paso por el login";
     $email_sesion = $_SESSION['sesion email'];
     $query_sesion = $pdo->prepare( "SELECT * FROM usuarios WHERE email = '$email_sesion' AND estado = '1'");
     $query_sesion->execute();
@@ -9,11 +10,20 @@ if(isset($_SESSION['sesion email'])){
     foreach($datos_sesion_usuarios as $datos_sesion_usuario){
       $nombre_sesion_usuario = $datos_sesion_usuario['nombres'];
     }
-    // lo que hace fetchAll es que me trae todos los datos de la consulta y me los guarda en un array, con ese array puedo recorrerlo con un foreach y obtener los datos que necesito. cuando tengo datos_sesion_
 } else {
-    // echo "El usuario no paso por el login";
     header('location:'.APP_URL."/login/index.php");
-} 
+}
+
+// Obtener notificaciones no leídas
+$sentencia = $pdo->prepare("SELECT * FROM notificaciones WHERE leido = FALSE");
+$sentencia->execute();
+$notificaciones_no_leidas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+$cantidad_notificaciones_no_leidas = count($notificaciones_no_leidas);
+
+// Obtener todas las notificaciones
+$sentencia = $pdo->prepare("SELECT * FROM notificaciones ORDER BY fecha_creacion DESC");
+$sentencia->execute();
+$notificaciones = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
 
 <!DOCTYPE html>
@@ -32,10 +42,16 @@ if(isset($_SESSION['sesion email'])){
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-<!-- DATATABLE -->
+  <!-- DATATABLE -->
   <link rel="stylesheet" href="<?=APP_URL;?>/public/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
   <link rel="stylesheet" href="<?=APP_URL;?>/public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
   <link rel="stylesheet" href="<?=APP_URL;?>/public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <style>
+    .dropdown-item {
+        white-space: normal;
+        word-wrap: break-word;
+    }
+  </style>
 </head>
 <body class="hold-transition sidebar-mini">
 <div class="wrapper">
@@ -58,27 +74,19 @@ if(isset($_SESSION['sesion email'])){
       <li class="nav-item dropdown">
         <a class="nav-link" data-toggle="dropdown" href="#">
           <i class="far fa-bell"></i>
-          <span class="badge badge-warning navbar-badge">15</span>
+          <span class="badge badge-warning navbar-badge"><?= $cantidad_notificaciones_no_leidas ?></span>
         </a>
         <div class="dropdown-menu dropdown-menu-lg dropdown-menu-right">
-          <span class="dropdown-header">15 Notifications</span>
+          <span class="dropdown-header"><?= $cantidad_notificaciones_no_leidas ?> Notificaciones</span>
           <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-envelope mr-2"></i> 4 new messages
-            <span class="float-right text-muted text-sm">3 mins</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-users mr-2"></i> 8 friend requests
-            <span class="float-right text-muted text-sm">12 hours</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item">
-            <i class="fas fa-file mr-2"></i> 3 new reports
-            <span class="float-right text-muted text-sm">2 days</span>
-          </a>
-          <div class="dropdown-divider"></div>
-          <a href="#" class="dropdown-item dropdown-footer">See All Notifications</a>
+          <?php foreach ($notificaciones as $notificacion): ?>
+            <a href="<?= APP_URL ?>/admin/tareas/show.php?id=<?= $notificacion['id_tarea'] ?>" class="dropdown-item">
+              <i class="fas fa-envelope mr-2"></i> <?= $notificacion['mensaje'] ?>
+              <span class="float-right text-muted text-sm"><?= $notificacion['fecha_creacion'] ?></span>
+            </a>
+            <div class="dropdown-divider"></div>
+          <?php endforeach; ?>
+          <a href="#" class="dropdown-item dropdown-footer">Ver todas las notificaciones</a>
         </div>
       </li>
       <li class="nav-item">
