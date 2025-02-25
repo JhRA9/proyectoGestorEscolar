@@ -1,6 +1,6 @@
 <?php
 include ('../../config/config.php');
-include ('../../admin/layout/parte1.php');
+include ('../layout/parte1.php');
 
 $id_tarea = $_GET['id'];
 $sentencia = $pdo->prepare("SELECT * FROM tareas WHERE id_tarea = ?");

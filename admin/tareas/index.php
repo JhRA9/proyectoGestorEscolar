@@ -2,16 +2,8 @@
 include ('../../config/config.php');
 include ('../layout/parte1.php');
 include('../../config/controllers/tareas/index.php');
-
-$sentencia = $pdo->prepare("
-    SELECT t.*, m.nombre_materia AS materia 
-    FROM tareas t 
-    LEFT JOIN materias m ON t.id_materia = m.id_materia
-");
-$sentencia->execute();
-$tareas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
-    
 ?>
+
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -38,6 +30,7 @@ $tareas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                         <th><center>Título</center></th>
                                         <th><center>Descripción</center></th>
                                         <th><center>Fecha de Entrega</center></th>
+                                        <th><center>Hora de Entrega</center></th>
                                         <th><center>Estado</center></th>
                                         <th><center>Materia</center></th>
                                         <th><center>Acciones</center></th>
@@ -55,12 +48,14 @@ $tareas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                                         <td><?=$tarea['titulo']?></td>
                                         <td><?=$tarea['descripcion']?></td>
                                         <td><?=$tarea['fecha_entrega']?></td>
+                                        <td><?=$tarea['hora_entrega']?></td>
                                         <td><?=$tarea['estado']?></td>
                                         <td><?=$tarea['materia']?></td>
                                         <td style="text-align: center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="show.php?id=<?=$id_tarea;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
                                                 <a href="edit.php?id=<?=$id_tarea;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                                <a href="upload.php?id=<?=$id_tarea;?>" type="button" class="btn btn-primary btn-sm"><i class="bi bi-upload"></i></a>
                                                 <form action="<?=APP_URL;?>/config/controllers/tareas/delete.php" method="POST">
                                                     <input type="text" value="<?=$id_tarea;?>" hidden name="id_tarea">
                                                     <button type="submit" class="btn btn-danger btn-sm"><i class="bi bi-trash"></i></button>

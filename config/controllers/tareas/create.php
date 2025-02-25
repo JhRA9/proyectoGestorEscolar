@@ -1,31 +1,17 @@
 <?php
-include('../../config.php');
-session_start();
+include ('../../config.php');
 
-$titulo = $_POST['titulo'];
-$descripcion = $_POST['descripcion'];
-$fecha_entrega = $_POST['fecha_entrega'];
-$estado = 'pendiente';
-$id_materia = $_POST['id_materia'];
-$fechaHora = date('Y-m-d H:i:s'); // Obtener la hora actual
+if ($_SERVER['REQUEST_METHOD'] == 'POST') {
+    $id_materia = $_POST['id_materia'];
+    $titulo = $_POST['titulo'];
+    $descripcion = $_POST['descripcion'];
+    $fecha_entrega = $_POST['fecha_entrega'];
+    $hora_entrega = $_POST['hora_entrega'];
 
-$sentencia = $pdo->prepare("INSERT INTO tareas (titulo, descripcion, fecha_entrega, estado, id_materia, hora_creacion) VALUES (:titulo, :descripcion, :fecha_entrega, :estado, :id_materia, :hora_creacion)");
+    $sentencia = $pdo->prepare("INSERT INTO tareas (id_materia, titulo, descripcion, fecha_entrega, hora_entrega, estado) VALUES (?, ?, ?, ?, ?, 'Pendiente')");
+    $sentencia->execute([$id_materia, $titulo, $descripcion, $fecha_entrega, $hora_entrega]);
 
-$sentencia->bindParam(':titulo', $titulo);
-$sentencia->bindParam(':descripcion', $descripcion);
-$sentencia->bindParam(':fecha_entrega', $fecha_entrega);
-$sentencia->bindParam(':estado', $estado);
-$sentencia->bindParam(':id_materia', $id_materia);
-$sentencia->bindParam(':hora_creacion', $fechaHora);
-
-if ($sentencia->execute()) {
-    $_SESSION['mensaje'] = "Tarea creada correctamente";
-    $_SESSION['icono'] = "success";
-} else {
-    $_SESSION['mensaje'] = "Error al crear la tarea";
-    $_SESSION['icono'] = "error";
+    header('location:' . APP_URL . "admin/tareas/index.php");
+    exit();
 }
-
-header('Location: ' . APP_URL . 'admin/tareas');
-exit();
 ?>

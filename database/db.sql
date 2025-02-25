@@ -58,3 +58,11 @@ CREATE TABLE `tareas` (
   FOREIGN KEY (`id_materia`) REFERENCES `materias`(`id_materia`) ON DELETE NO ACTION ON UPDATE CASCADE
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
+ALTER TABLE tareas ADD COLUMN hora_entrega TIME NOT NULL;
+
+CREATE TABLE archivos (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    id_tarea INT NOT NULL,
+    ruta_archivo VARCHAR(255) NOT NULL,
+    FOREIGN KEY (id_tarea) REFERENCES tareas(id_tarea)
+);
