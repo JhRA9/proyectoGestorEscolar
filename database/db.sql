@@ -45,3 +45,16 @@ CREATE TABLE materias (
 INSERT INTO materias (nombre_materia,hora_creacion,estado)
 VALUES ('MATEMÁTICA','2023-12-28 20:29:10','1');
 
+CREATE TABLE `tareas` (
+  `id_tarea` int(11) NOT NULL AUTO_INCREMENT,
+  `titulo` varchar(255) NOT NULL,
+  `descripcion` text NOT NULL,
+  `fecha_entrega` date NOT NULL,
+  `estado` varchar(50) NOT NULL,
+  `hora_creacion` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `hora_actualizacion` datetime DEFAULT NULL,
+  `id_materia` int(11) NOT NULL,
+  PRIMARY KEY (`id_tarea`),
+  FOREIGN KEY (`id_materia`) REFERENCES `materias`(`id_materia`) ON DELETE NO ACTION ON UPDATE CASCADE
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+

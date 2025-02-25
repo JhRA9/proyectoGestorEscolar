@@ -6,14 +6,16 @@ $titulo = $_POST['titulo'];
 $descripcion = $_POST['descripcion'];
 $fecha_entrega = $_POST['fecha_entrega'];
 $estado = 'pendiente';
+$id_materia = $_POST['id_materia'];
 $fechaHora = date('Y-m-d H:i:s'); // Obtener la hora actual
 
-$sentencia = $pdo->prepare("INSERT INTO tareas (titulo, descripcion, fecha_entrega, estado, hora_creacion) VALUES (:titulo, :descripcion, :fecha_entrega, :estado, :hora_creacion)");
+$sentencia = $pdo->prepare("INSERT INTO tareas (titulo, descripcion, fecha_entrega, estado, id_materia, hora_creacion) VALUES (:titulo, :descripcion, :fecha_entrega, :estado, :id_materia, :hora_creacion)");
 
 $sentencia->bindParam(':titulo', $titulo);
 $sentencia->bindParam(':descripcion', $descripcion);
 $sentencia->bindParam(':fecha_entrega', $fecha_entrega);
 $sentencia->bindParam(':estado', $estado);
+$sentencia->bindParam(':id_materia', $id_materia);
 $sentencia->bindParam(':hora_creacion', $fechaHora);
 
 if ($sentencia->execute()) {

@@ -2,6 +2,15 @@
 include ('../../config/config.php');
 include ('../layout/parte1.php');
 include('../../config/controllers/tareas/index.php');
+
+$sentencia = $pdo->prepare("
+    SELECT t.*, m.nombre_materia AS materia 
+    FROM tareas t 
+    LEFT JOIN materias m ON t.id_materia = m.id_materia
+");
+$sentencia->execute();
+$tareas = $sentencia->fetchAll(PDO::FETCH_ASSOC);
+    
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -30,6 +39,7 @@ include('../../config/controllers/tareas/index.php');
                                         <th><center>Descripción</center></th>
                                         <th><center>Fecha de Entrega</center></th>
                                         <th><center>Estado</center></th>
+                                        <th><center>Materia</center></th>
                                         <th><center>Acciones</center></th>
                                     </tr>
                                 </thead>
@@ -46,6 +56,7 @@ include('../../config/controllers/tareas/index.php');
                                         <td><?=$tarea['descripcion']?></td>
                                         <td><?=$tarea['fecha_entrega']?></td>
                                         <td><?=$tarea['estado']?></td>
+                                        <td><?=$tarea['materia']?></td>
                                         <td style="text-align: center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="show.php?id=<?=$id_tarea;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>

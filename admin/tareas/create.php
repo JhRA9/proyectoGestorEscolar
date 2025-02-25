@@ -1,6 +1,10 @@
 <?php
 include ('../../config/config.php');
 include ('../../admin/layout/parte1.php');
+
+$sentencia = $pdo->prepare("SELECT * FROM materias");
+$sentencia->execute();
+$materias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -40,6 +44,18 @@ include ('../../admin/layout/parte1.php');
                                         <div class="form-group">
                                             <label for="">Fecha de Entrega</label>
                                             <input type="date" class="form-control" name="fecha_entrega" required>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <label for="">Materia</label>
+                                            <select class="form-control" name="id_materia" required>
+                                                <?php foreach ($materias as $materia): ?>
+                                                    <option value="<?= $materia['id_materia'] ?>"><?= $materia['nombre_materia'] ?></option>
+                                                <?php endforeach; ?>
+                                            </select>
                                         </div>
                                     </div>
                                 </div>
