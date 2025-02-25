@@ -1,7 +1,6 @@
 <?php
 include ('../../config/config.php');
 include ('../../admin/layout/parte1.php');
-include ('../layout/parte1.php');
 ?>
 
 <!-- Formulario para crear un nuevo rol -->
@@ -16,7 +15,7 @@ include ('../layout/parte1.php');
                           <h3 class="card-title">Crear nuevo rol</h3>
                       </div>
                       <div class="card-body">
-                          <form action="store.php" method="POST">
+                          <form action="<?=APP_URL;?>/config/controllers/roles/create.php" method="POST">
                               <div class="form-group">
                                   <label for="nombre_rol">Nombre del rol</label>
                                   <input type="text" name="nombre_rol" id="nombre_rol" class="form-control" required>
