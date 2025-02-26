@@ -1,5 +1,11 @@
 <?php
 include ('../../config.php');
+include ('../../../observers/Subject.php');
+include ('../../../observers/NotificacionObserver.php');
+
+$subject = new Subject();
+$notificacionObserver = new NotificacionObserver();
+$subject->addObserver($notificacionObserver);
 
 // Obtener los datos del formulario
 $id_materia = $_POST['id_materia'];
@@ -21,11 +27,19 @@ $sentencia->execute([$id_materia, $titulo, $descripcion, $fecha_entrega, $hora_e
 // Obtener el ID de la tarea recién creada
 $id_tarea = $pdo->lastInsertId();
 
-
-// Agregar notificación
+// Notificar la creación de la tarea
 $mensaje = "Se ha creado una nueva tarea en la materia $nombre_materia: $titulo";
-$sentencia = $pdo->prepare("INSERT INTO notificaciones (mensaje, id_tarea) VALUES (?, ?)");
-$sentencia->execute([$mensaje, $id_tarea]);
+$subject->notifyObservers(['mensaje' => $mensaje, 'id_tarea' => $id_tarea]);
+
+// Verificar si la tarea está próxima a vencer (por ejemplo, en 2 días)
+$fecha_actual = new DateTime();
+$fecha_entrega_dt = new DateTime($fecha_entrega);
+$intervalo = $fecha_actual->diff($fecha_entrega_dt);
+
+if ($intervalo->days <= 2 && $intervalo->invert == 0) {
+    $mensaje_vencimiento = "La tarea '$titulo' de la materia '$nombre_materia' está próxima a vencer.";
+    $subject->notifyObservers(['mensaje' => $mensaje_vencimiento, 'id_tarea' => $id_tarea]);
+}
 
 // Redirigir al usuario a la página de listado de tareas
 header('Location: ' . APP_URL . 'admin/tareas/index.php');
