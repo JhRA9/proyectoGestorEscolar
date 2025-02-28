@@ -5,7 +5,7 @@ include('../../config/controllers/tareas/index.php');
 ?>
 
 <!-- Content Wrapper. Contains page content -->
-<div class="content-wrapper">
+<div class="content-wrapper">   
     <!-- Content Header (Page header) -->
     <br>
     <div class="content">
