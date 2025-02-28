@@ -6,9 +6,6 @@ include('../config/controllers/usuarios/listado_usuarios.php');
 include('../config/controllers/materias/listado_de_materias.php');
 include('../config/controllers/tareas/index.php');
 
-if($_SESSION['role'] != 'ADMINISTRADOR'){
-    header('location:' . APP_URL . "/admin/home.php");
-}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -21,51 +18,8 @@ if($_SESSION['role'] != 'ADMINISTRADOR'){
       </div>
       <br>
       <div class="row">
-        <div class="col-lg-3 col-6">
-          <!-- small card -->
-          <div class="small-box bg-primary">
-            <div class="inner">
-              <?php
-              $contador_rol = 0;
-              foreach ($roles as $role) {
-                $contador_rol++;
-              }
-              ?>
-              <h3><?= $contador_rol; ?></h3>
-              <p>Roles registrados</p>
-            </div>
-            <div class="icon">
-              <i class="fas bi-bookmarks"></i>
-            </div>
-            <a href="<?= APP_URL; ?>/admin/roles" class="small-box-footer">
-              Mas informacion <i class="fas fa-arrow-circle-right"></i>
-            </a>
-          </div>
-        </div>
 
-        <div class="col-lg-3 col-6">
-          <!-- small card -->
-          <div class="small-box bg-info">
-            <div class="inner">
-              <?php
-              $contador_usuarios = 0;
-              foreach ($usuarios as $usuario) {
-                $contador_usuarios++;
-              }
-              ?>
-              <h3><?= $contador_usuarios; ?></h3>
-              <p>Usuarios registrados</p>
-            </div>
-            <div class="icon">
-              <i class="fas bi-people-fill"></i>
-            </div>
-            <a href="<?= APP_URL; ?>/admin/usuarios" class="small-box-footer">
-              Mas informacion <i class="fas fa-arrow-circle-right"></i>
-            </a>
-          </div>
-        </div>
-
-        <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
           <div class="small-box bg-danger">
             <div class="inner">
               <?php
@@ -86,7 +40,7 @@ if($_SESSION['role'] != 'ADMINISTRADOR'){
           </div>
         </div>
 
-        <div class="col-lg-3 col-6">
+      <div class="col-lg-3 col-6">
           <div class="small-box bg-success">
             <div class="inner">
               <?php
@@ -105,6 +59,7 @@ if($_SESSION['role'] != 'ADMINISTRADOR'){
               Más información <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
+        </div>
         </div>
       </div>
       <!-- /.row -->

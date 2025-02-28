@@ -21,7 +21,7 @@ include ('../../config/controllers/materias/listado_de_materias.php');
                         <div class="card-header">
                             <h3 class="card-title">Materias registrados</h3>
                             <div class="card-tools">
-                                <a href="create.php" class="btn btn-primary"><i class="bi bi-plus-square"></i> Crear nueva materia</a>
+                            <?php if (in_array($_SESSION['role'], ['ADMINISTRADOR'])): ?><a href="create.php" class="btn btn-primary"><i class="bi bi-plus-square"></i> Crear nueva materia</a><?php endif; ?>
                             </div>
                         </div>
                         <div class="card-body">
@@ -52,11 +52,12 @@ include ('../../config/controllers/materias/listado_de_materias.php');
                                         <td style="text-align: center">
                                             <div class="btn-group" role="group" aria-label="Basic example">
                                                 <a href="show.php?id=<?=$id_materia;?>" type="button" class="btn btn-info btn-sm"><i class="bi bi-eye"></i></a>
-                                                <a href="edit.php?id=<?=$id_materia;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
+                                                <?php if (in_array($_SESSION['role'], ['ADMINISTRADOR'])): ?><a href="edit.php?id=<?=$id_materia;?>" type="button" class="btn btn-success btn-sm"><i class="bi bi-pencil"></i></a>
                                                 <form action="<?=APP_URL;?>/config/controllers/materias/delete.php" onclick="preguntar<?=$id_materia;?>(event)" method="post" id="miFormulario<?=$id_materia;?>">
                                                     <input type="text" name="id_materia" value="<?=$id_materia;?>" hidden>
                                                     <button type="submit" class="btn btn-danger btn-sm" style="border-radius: 0px 5px 5px 0px"><i class="bi bi-trash"></i></button>
                                                 </form>
+                                                <?php endif; ?>
                                                 <script>
                                                     function preguntar<?=$id_materia;?>(event) {
                                                         event.preventDefault();

@@ -25,7 +25,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     if (move_uploaded_file($archivo['tmp_name'], $ruta_archivo)) {
         $sentencia = $pdo->prepare("INSERT INTO archivos (id_tarea, ruta_archivo) VALUES (?, ?)");
-        $sentencia->execute([$id_tarea, $ruta_archivo]);
+        $sentencia->execute([$id_tarea, $archivo['name']]);
 
         // Cambiar el estado de la tarea a "completado"
         $sentencia = $pdo->prepare("UPDATE tareas SET estado = 'completado' WHERE id_tarea = ?");

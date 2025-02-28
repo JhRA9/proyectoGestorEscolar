@@ -1,6 +1,6 @@
 <?php
 session_start();
-include ('../../config/config.php');
+include('../../config/config.php');
 
 if ($_SESSION['rol'] != 'PROFESOR') {
     header('Location: index.php');
@@ -19,4 +19,3 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     header('Location: index.php');
     exit();
 }
-?>
