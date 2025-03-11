@@ -197,6 +197,8 @@ if (in_array($_SESSION['role'], ['PROFESOR', 'ESTUDIANTE'])) {
       <!-- /.sidebar -->
     </aside>
 
+    <!-- PATRON OBSERVER -->
+
     <script>
       function getNotifications() {
         fetch('/proyectoEscuela/config/controllers/notifications/', {

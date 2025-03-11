@@ -3,6 +3,9 @@ include ('../../config.php');
 include ('../../../observers/Subject.php');
 include ('../../../observers/NotificacionObserver.php');
 
+
+// PATRON OBSERVER
+
 $subject = new Subject();
 $notificacionObserver = new NotificacionObserver();
 $subject->addObserver($notificacionObserver);

@@ -74,6 +74,8 @@ include('../../admin/layout/parte2.php');
 include('../../layout/mostrarMensajes.php');
 ?>
 
+<!-- PATRON ESTRATEGY -->
+
 <script>
     $(function() {
 
