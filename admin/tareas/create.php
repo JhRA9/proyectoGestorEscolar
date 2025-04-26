@@ -1,7 +1,22 @@
 <?php
-include ('../../config/config.php');
-include ('../../admin/layout/parte1.php');
+include('../../config/config.php');
+session_start();
 
+// Validar si el usuario está autenticado
+if (!isset($_SESSION['sesion email'])) {
+    header('Location: ' . APP_URL . '/login/index.php');
+    exit();
+}
+
+// Validar si el usuario tiene el rol adecuado
+if (!in_array($_SESSION['role'], ['ADMINISTRADOR', 'PROFESOR'])) {
+    header('Location: ' . APP_URL . '/admin/home.php'); // Redirigir al inicio si no tiene permiso
+    exit();
+}
+
+include('../../admin/layout/parte1.php');
+
+// Obtener las materias desde la base de datos
 $sentencia = $pdo->prepare("SELECT * FROM materias");
 $sentencia->execute();
 $materias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -82,6 +97,6 @@ $materias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
     </div>
 </div>
 <?php
-include ('../../admin/layout/parte2.php');
-include ('../../layout/mostrarMensajes.php');
+include('../../admin/layout/parte2.php');
+include('../../layout/mostrarMensajes.php');
 ?>
