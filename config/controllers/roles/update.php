@@ -1,6 +1,5 @@
 <?php
 include('../../config.php');
-
 $id_rol = $_POST['id_rol'];
 $nombre_rol = $_POST['nombre_rol'];
 $nombre_rol = mb_strtoupper($nombre_rol, 'UTF-8');

@@ -1,11 +1,7 @@
 <?php
 session_start();
 include('../../config/config.php');
-
-if ($_SESSION['rol'] != 'PROFESOR') {
-    header('Location: index.php');
-    exit();
-}
+include('../../config/autenticacion_rol.php');
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $id_materia = $_POST['id_materia'];

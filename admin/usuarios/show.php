@@ -1,8 +1,7 @@
 <?php
-
 $id_usuario = $_GET['id'];
-
 include('../../config/config.php');
+include('../../config/autenticacion_rol.php');
 include('../../admin/layout/parte1.php');
 include('../../config/controllers/usuarios/datos_usuario.php');
 ?>
@@ -13,7 +12,7 @@ include('../../config/controllers/usuarios/datos_usuario.php');
     <div class="content">
         <div class="container">
             <div class="row">
-                <h1>Usuario: <?=$nombres;?></h1>
+                <h1>Usuario: <?= $nombres; ?></h1>
             </div>
             <br>
             <div class="row">
@@ -23,52 +22,52 @@ include('../../config/controllers/usuarios/datos_usuario.php');
                             <h3 class="card-title">Digite los datos</h3>
                         </div>
                         <div class="card-body">
-                                <div class="row">
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Datos del usuario</label>
-                                            <p><?=$nombre_rol;?></p>
-                                        </div>
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Datos del usuario</label>
+                                        <p><?= $nombre_rol; ?></p>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Nombre del usuario</label>
-                                            <p><?=$nombres;?></p>
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Nombre del usuario</label>
+                                        <p><?= $nombres; ?></p>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Correo electronico</label>
-                                            <p><?=$email;?></p>
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Correo electronico</label>
+                                        <p><?= $email; ?></p>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Fecha y hora de creacion</label>
-                                            <p><?=$fechaHora;?></p>
-                                        </div>
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Fecha y hora de creacion</label>
+                                        <p><?= $fechaHora; ?></p>
                                     </div>
-                                    <div class="col-md-4">
-                                        <div class="form-group">
-                                            <label for="">Estado</label>
-                                            <p><?php 
-                                            if($estado == 1) {
+                                </div>
+                                <div class="col-md-4">
+                                    <div class="form-group">
+                                        <label for="">Estado</label>
+                                        <p><?php
+                                            if ($estado == 1) {
                                                 echo 'Activo';
                                             } else {
                                                 echo 'Inactivo';
-                                            }?></p>
-                                        </div>
+                                            } ?></p>
                                     </div>
                                 </div>
-                                <hr>
-                                <div class="row">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <a href="<?= APP_URL; ?>admin/usuarios" class="btn btn-secondary">Volver</a>
-                                        </div>
+                            </div>
+                            <hr>
+                            <div class="row">
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <a href="<?= APP_URL; ?>admin/usuarios" class="btn btn-secondary">Volver</a>
                                     </div>
                                 </div>
-                            
+                            </div>
+
                         </div>
                     </div>
                 </div>

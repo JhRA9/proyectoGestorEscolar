@@ -1,5 +1,4 @@
 <?php
-
 $sql_usuarios = "SELECT * FROM usuarios as usu INNER JOIN roles as rol on rol.id_rol = usu.rol_id WHERE usu.estado = '1' and usu.id_usuario = '$id_usuario'";
 // lo que estoy haciendo con inner join es traer los datos de la tabla roles que estan relacionados con la tabla usuarios, esto me permite traer el nombre del rol en lugar del id del rol
 

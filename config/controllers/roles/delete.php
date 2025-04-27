@@ -1,6 +1,5 @@
 <?php
 include('../../config.php');
-
 $id_rol = $_POST['id_rol'];
 
 $sentencia = $pdo->prepare("DELETE FROM roles WHERE id_rol=:id_rol");

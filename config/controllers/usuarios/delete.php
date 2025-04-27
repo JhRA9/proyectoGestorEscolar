@@ -1,6 +1,5 @@
 <?php
 include('../../config.php');
-
 $id_usuario = $_POST['id_usuario'];
 
 $sentencia = $pdo->prepare("DELETE FROM usuarios WHERE id_usuario=:id_usuario");

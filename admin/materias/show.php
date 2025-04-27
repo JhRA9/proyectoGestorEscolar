@@ -1,9 +1,8 @@
 <?php
-
 $id_materia = $_GET['id'];
 include ('../../config/config.php');
+include('../../config/autenticacion_rol.php');
 include ('../../admin/layout/parte1.php');
-
 include ('../../config/controllers/materias/datos_materia.php');
 
 ?>

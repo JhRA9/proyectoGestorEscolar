@@ -3,22 +3,8 @@ if (session_status() === PHP_SESSION_NONE) {
   session_start();
 }
 
-// valido el inicio de sesion
-if (!isset($_SESSION['sesion email']) && !isset($_SESSION['admin'])) {
-  header('Location: ' . APP_URL . '/login/index.php');
-  exit;
-}
-
-// valido el rol del usuario
-$email_sesion          = $_SESSION['sesion email'] ?? $_SESSION['admin'] ?? '';
+// valido el nombre del usuario
 $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
-$role                  = $_SESSION['role']         ?? '';
-
-// 4) Determino cual es la URL de inicio dependiendo del rol
-$url_home = APP_URL . '/admin';
-if (in_array($role, ['PROFESOR', 'ESTUDIANTE'], true)) {
-  $url_home = APP_URL . '/admin/home.php';
-}
 ?>
 
 <!DOCTYPE html>
@@ -100,7 +86,7 @@ if (in_array($role, ['PROFESOR', 'ESTUDIANTE'], true)) {
         <img src="<?= APP_URL ?>/public/img/iconoPrincipal.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">San Francisco de Asís</span>
       </a>
-      
+
 
       <!-- Sidebar -->
       <div class="sidebar">
@@ -110,7 +96,7 @@ if (in_array($role, ['PROFESOR', 'ESTUDIANTE'], true)) {
             <img src="<?= APP_URL ?>/public/img/usuarioAdmin.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
-            <a href="#" class="d-block"><?=$nombre_sesion_usuario;?></a>
+            <a href="#" class="d-block"><?= $nombre_sesion_usuario; ?></a>
           </div>
         </div>
         <!-- Sidebar Menu -->

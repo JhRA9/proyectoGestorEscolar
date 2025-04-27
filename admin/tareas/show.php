@@ -1,6 +1,6 @@
 <?php
-include ('../../config/config.php');
-include ('../../admin/layout/parte1.php');
+include('../../config/config.php');
+include('../../admin/layout/parte1.php');
 
 $id_tarea = $_GET['id'];
 $sentencia = $pdo->prepare("SELECT * FROM tareas WHERE id_tarea = ?");
@@ -36,41 +36,41 @@ $hora_actual = date('H:i:s');
                 </div>
             </div>
             <?php if ($fecha_actual <= $tarea['fecha_entrega'] && $hora_actual <= $tarea['hora_entrega']): ?>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="card card-outline card-primary">
-                        <div class="card-header">
-                            <h3 class="card-title">Subir archivo para la tarea</h3>
-                        </div>
-                        <div class="card-body">
-                            <form action="<?= APP_URL; ?>config/controllers/tareas/upload.php" method="POST" enctype="multipart/form-data">
-                                <input type="hidden" name="id_tarea" value="<?= $id_tarea ?>">
-                                <div class="form-group">
-                                    <label for="archivo">Archivo</label>
-                                    <input type="file" class="form-control" name="archivo" required>
-                                </div>
-                                <div class="form-group">
-                                    <button type="submit" class="btn btn-primary">Subir Archivo</button>
-                                    <a href="<?= APP_URL; ?>admin/tareas" class="btn btn-secondary">Cancelar</a>
-                                </div>
-                            </form>
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="card card-outline card-primary">
+                            <div class="card-header">
+                                <h3 class="card-title">Subir archivo para la tarea</h3>
+                            </div>
+                            <div class="card-body">
+                                <form action="<?= APP_URL; ?>config/controllers/tareas/upload.php" method="POST" enctype="multipart/form-data">
+                                    <input type="hidden" name="id_tarea" value="<?= $id_tarea ?>">
+                                    <div class="form-group">
+                                        <label for="archivo">Archivo</label>
+                                        <input type="file" class="form-control" name="archivo" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <button type="submit" class="btn btn-primary">Subir Archivo</button>
+                                        <a href="<?= APP_URL; ?>admin/tareas" class="btn btn-secondary">Cancelar</a>
+                                    </div>
+                                </form>
+                            </div>
                         </div>
                     </div>
                 </div>
-            </div>
             <?php else: ?>
-            <div class="row">
-                <div class="col-md-6">
-                    <div class="alert alert-danger">
-                        La fecha y hora de entrega han pasado. No puedes subir archivos.
+                <div class="row">
+                    <div class="col-md-6">
+                        <div class="alert alert-danger">
+                            La fecha y hora de entrega han pasado. No puedes subir archivos.
+                        </div>
                     </div>
                 </div>
-            </div>
             <?php endif; ?>
         </div>
     </div>
 </div>
 <?php
-include ('../../admin/layout/parte2.php');
-include ('../../layout/mostrarMensajes.php');
+include('../../admin/layout/parte2.php');
+include('../../layout/mostrarMensajes.php');
 ?>

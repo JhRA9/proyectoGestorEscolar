@@ -1,8 +1,39 @@
 <?php
-include ('../../config/config.php');
-include ('../../admin/layout/parte1.php');
-include ('../../config/controllers/tareas/edit.php');
+include('../../config/config.php');
+include('../../config/autenticacion_rol.php');
 
+// Verifico si el rol es válido para editar tareas
+if (!in_array($_SESSION['role'], ['ADMINISTRADOR', 'PROFESOR'])) {
+    header('Location: index.php'); // Redirigir al listado si no tiene permiso
+    exit();
+}
+
+include('../../admin/layout/parte1.php');
+
+// Verifico si se ha pasado el ID de la tarea
+if (!isset($_GET['id']) || empty($_GET['id'])) {
+    $_SESSION['mensaje'] = "No se especificó una tarea válida para editar.";
+    $_SESSION['icono'] = "error";
+    header('Location: index.php');
+    exit();
+}
+
+$id_tarea = $_GET['id'];
+
+// Obtengo los datos de la tarea desde la base de datos
+$sentencia = $pdo->prepare("SELECT * FROM tareas WHERE id_tarea = ?");
+$sentencia->execute([$id_tarea]);
+$tarea = $sentencia->fetch(PDO::FETCH_ASSOC);
+
+// Verifico si la tarea existe
+if (!$tarea) {
+    $_SESSION['mensaje'] = "La tarea no existe o no se encontró.";
+    $_SESSION['icono'] = "error";
+    header('Location: index.php');
+    exit();
+}
+
+// Obtengo las materias para el formulario
 $sentencia = $pdo->prepare("SELECT * FROM materias");
 $sentencia->execute();
 $materias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
@@ -91,10 +122,36 @@ $materias = $sentencia->fetchAll(PDO::FETCH_ASSOC);
                     </div>
                 </div>
             </div>
-        </div>
+            <!-- Botón para subir archivos -->
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="card card-outline card-success">
+                        <div class="card-header">
+                            <h3 class="card-title">Subir Archivo</h3>
+                        </div>
+                        <div class="card-body">
+                            <form action="<?= APP_URL; ?>config/controllers/tareas/upload.php" method="POST" enctype="multipart/form-data">
+                                <input type="hidden" name="id_tarea" value="<?= $tarea['id_tarea'] ?>">
+                                <div class="form-group">
+                                    <label for="archivo">Archivo</label>
+                                    <input type="file" class="form-control" name="archivo" required>
+                                </div>
+                                <div class="form-group">
+                                    <button type="submit" class="btn btn-success">Subir Archivo</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- /.row -->
+        </div><!-- /.container-fluid -->
     </div>
+    <!-- /.content -->
 </div>
+<!-- /.content-wrapper -->
+
 <?php
-include ('../../admin/layout/parte2.php');
-include ('../../layout/mostrarMensajes.php');
+include('../../admin/layout/parte2.php');
+include('../../layout/mostrarMensajes.php');
 ?>

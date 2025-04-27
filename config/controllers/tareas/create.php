@@ -1,8 +1,7 @@
 <?php
-include ('../../config.php');
-include ('../../../observers/Subject.php');
-include ('../../../observers/NotificacionObserver.php');
-
+include('../../config.php');
+include('../../../observers/Subject.php');
+include('../../../observers/NotificacionObserver.php');
 
 // PATRON OBSERVER
 
@@ -47,4 +46,3 @@ if ($intervalo->days <= 2 && $intervalo->invert == 0) {
 // Redirigir al usuario a la página de listado de tareas
 header('Location: ' . APP_URL . 'admin/tareas/index.php');
 exit();
-?>

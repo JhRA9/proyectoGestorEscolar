@@ -1,21 +1,10 @@
 <?php
 include('../../config/config.php');
+include('../../config/autenticacion_rol.php');
 
-session_start();
-if (!isset($_SESSION['sesion email']) && !isset($_SESSION['admin'])) {
-    header('Location: ' . APP_URL . '/login/index.php');
-    exit;
-}
-
-// Validar si el usuario está autenticado
-if (!isset($_SESSION['sesion email'])) {
-    header('Location: ' . APP_URL . '/login/index.php');
-    exit();
-}
-
-// Validar si el usuario tiene el rol adecuado
+// Verifico si el rol es válido para crear tareas
 if (!in_array($_SESSION['role'], ['ADMINISTRADOR', 'PROFESOR'])) {
-    header('Location: ' . APP_URL . '/admin/home.php'); // Redirigir al inicio si no tiene permiso
+    header('Location: index.php'); // Redirigir al listado si no tiene permiso
     exit();
 }
 
