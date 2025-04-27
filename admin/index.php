@@ -1,14 +1,23 @@
 <?php
-include('../config/config.php');
+include '../config/config.php';
+
+session_start();
+
+if (!isset($_SESSION['admin']) && !isset($_SESSION['sesion email'])) {
+    header('Location: ' . APP_URL . '/login/index.php');
+    exit;
+}
+
+if ($_SESSION['role'] !== 'ADMINISTRADOR') {
+    header('Location: ' . APP_URL . '/admin/home.php');
+    exit;
+}
+
 include('layout/parte1.php');
 include('../config/controllers/roles/listado_roles.php');
 include('../config/controllers/usuarios/listado_usuarios.php');
 include('../config/controllers/materias/listado_de_materias.php');
 include('../config/controllers/tareas/index.php');
-
-if($_SESSION['role'] != 'ADMINISTRADOR'){
-    header('location:' . APP_URL . "/admin/home.php");
-}
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">

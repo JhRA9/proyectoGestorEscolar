@@ -1,5 +1,12 @@
 <?php
-include('../../config/config.php');
+include '../../config/config.php';
+
+session_start();
+if (!isset($_SESSION['sesion email']) && !isset($_SESSION['admin'])) {
+    header('Location: ' . APP_URL . '/login/index.php');
+    exit;
+}
+
 include('../layout/parte1.php');
 include('../../config/controllers/tareas/index.php');
 ?>

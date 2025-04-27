@@ -37,9 +37,9 @@ try:
     print("Intentando iniciar sesión como administrador...")
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
     driver.find_element(By.NAME, "email").send_keys("admin@admin.com")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "password").send_keys("123")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "password").send_keys(Keys.RETURN)
     WebDriverWait(driver, 10).until(EC.url_contains("admin"))
     print("Inicio de sesión como administrador - PASÓ")
@@ -52,21 +52,21 @@ except Exception as e:
 try:
     print("Probando la creación de una tarea válida...")
     driver.get("http://localhost/proyectoEscuela/admin/tareas/create.php")
-    time.sleep(2)
+    time.sleep(3)  # Pausa de 3 segundos
 
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "id_materia")))
     select_materia = Select(driver.find_element(By.NAME, "id_materia"))
     select_materia.select_by_value("1")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "titulo").send_keys("Tarea de prueba válida")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "descripcion").send_keys("Descripción de la tarea de prueba válida")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.execute_script("document.getElementsByName('fecha_entrega')[0].value = '2025-04-30'")
     driver.execute_script("document.getElementsByName('hora_entrega')[0].value = '23:59'")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "hora_entrega").send_keys(Keys.RETURN)
-    time.sleep(2)
+    time.sleep(3)  # Pausa de 3 segundos
 
     WebDriverWait(driver, 10).until(EC.url_contains("index.php"))
     print("Flujo 1: Creación válida - PASÓ")
@@ -83,20 +83,20 @@ except Exception as e:
 try:
     print("Probando la creación de una tarea con datos inválidos...")
     driver.get("http://localhost/proyectoEscuela/admin/tareas/create.php")
-    time.sleep(2)
+    time.sleep(3)  # Pausa de 3 segundos
 
     select_materia = Select(driver.find_element(By.NAME, "id_materia"))
     select_materia.select_by_value("1")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "titulo").send_keys("")  # Dejo el título vacío
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "descripcion").send_keys("Descripción inválida")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.execute_script("document.getElementsByName('fecha_entrega')[0].value = '2025-04-30'")
     driver.execute_script("document.getElementsByName('hora_entrega')[0].value = '23:59'")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "hora_entrega").send_keys(Keys.RETURN)
-    time.sleep(2)
+    time.sleep(3)  # Pausa de 3 segundos
 
     if "create.php" in driver.current_url:
         print("Flujo 2: Creación fallida - PASÓ")
@@ -111,16 +111,16 @@ try:
     driver.get("http://localhost/proyectoEscuela/login/index.php")
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
     driver.find_element(By.NAME, "email").send_keys("estudiante@gmail.com")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "password").send_keys("123")
-    time.sleep(1)
+    time.sleep(3)  # Pausa de 3 segundos
     driver.find_element(By.NAME, "password").send_keys(Keys.RETURN)
     WebDriverWait(driver, 10).until(EC.url_contains("admin"))
     print("Inicio de sesión con estudiante - PASÓ")
 
     print("Intentando acceder a la página de creación de tareas...")
     driver.get("http://localhost/proyectoEscuela/admin/tareas/create.php")
-    time.sleep(2)
+    time.sleep(3)  # Pausa de 3 segundos
 
     if "home.php" in driver.current_url or "acceso_denegado.php" in driver.current_url:
         print("Flujo 4: Verificación de autenticación con estudiante - PASÓ")

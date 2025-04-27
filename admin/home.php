@@ -1,11 +1,23 @@
 <?php
-include('../config/config.php');
+include '../config/config.php';
+
+session_start();
+
+if (!isset($_SESSION['admin']) && !isset($_SESSION['sesion email'])) {
+    header('Location: ' . APP_URL . '/login/index.php');
+    exit;
+}
+
+if ($_SESSION['role'] === 'ADMINISTRADOR') {
+    header('Location: ' . APP_URL . '/admin');
+    exit;
+}
+
 include('layout/parte1.php');
 include('../config/controllers/roles/listado_roles.php');
 include('../config/controllers/usuarios/listado_usuarios.php');
 include('../config/controllers/materias/listado_de_materias.php');
 include('../config/controllers/tareas/index.php');
-
 ?>
 <!-- Content Wrapper. Contains page content -->
 <div class="content-wrapper">
@@ -19,7 +31,7 @@ include('../config/controllers/tareas/index.php');
       <br>
       <div class="row">
 
-      <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-6">
           <div class="small-box bg-danger">
             <div class="inner">
               <?php
@@ -40,7 +52,7 @@ include('../config/controllers/tareas/index.php');
           </div>
         </div>
 
-      <div class="col-lg-3 col-6">
+        <div class="col-lg-3 col-6">
           <div class="small-box bg-success">
             <div class="inner">
               <?php
@@ -60,12 +72,12 @@ include('../config/controllers/tareas/index.php');
             </a>
           </div>
         </div>
-        </div>
       </div>
-      <!-- /.row -->
-    </div><!-- /.container-fluid -->
-  </div>
-  <!-- /.content -->
+    </div>
+    <!-- /.row -->
+  </div><!-- /.container-fluid -->
+</div>
+<!-- /.content -->
 </div>
 <!-- /.content-wrapper -->
 

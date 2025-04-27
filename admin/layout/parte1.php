@@ -1,18 +1,24 @@
 <?php
-session_start();
-if (!isset($_SESSION['sesion email'])) {
-  header('location:' . APP_URL . "/login/index.php");
-  return;
+if (session_status() === PHP_SESSION_NONE) {
+  session_start();
 }
 
-$email_sesion = $_SESSION['sesion email'];
-$nombre_sesion_usuario = $_SESSION['name'];
-
-$url_home = APP_URL . "/admin/";
-if (in_array($_SESSION['role'], ['PROFESOR', 'ESTUDIANTE'])) {
-  $url_home = APP_URL . "/admin/home.php";
+// valido el inicio de sesion
+if (!isset($_SESSION['sesion email']) && !isset($_SESSION['admin'])) {
+  header('Location: ' . APP_URL . '/login/index.php');
+  exit;
 }
 
+// valido el rol del usuario
+$email_sesion          = $_SESSION['sesion email'] ?? $_SESSION['admin'] ?? '';
+$nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
+$role                  = $_SESSION['role']         ?? '';
+
+// 4) Determino cual es la URL de inicio dependiendo del rol
+$url_home = APP_URL . '/admin';
+if (in_array($role, ['PROFESOR', 'ESTUDIANTE'], true)) {
+  $url_home = APP_URL . '/admin/home.php';
+}
 ?>
 
 <!DOCTYPE html>

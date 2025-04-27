@@ -1,6 +1,11 @@
 <?php
 include('../../config/config.php');
+
 session_start();
+if (!isset($_SESSION['sesion email']) && !isset($_SESSION['admin'])) {
+    header('Location: ' . APP_URL . '/login/index.php');
+    exit;
+}
 
 // Validar si el usuario está autenticado
 if (!isset($_SESSION['sesion email'])) {
