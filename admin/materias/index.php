@@ -21,7 +21,7 @@ include('../../config/controllers/materias/listado_de_materias.php');
                         <div class="card-header">
                             <h3 class="card-title">Materias registrados</h3>
                             <div class="card-tools">
-                                <?php if (in_array($_SESSION['role'], ['ADMINISTRADOR'])): ?><a href="create.php" class="btn btn-primary"><i class="bi bi-plus-square"></i> Crear nueva materia</a><?php endif; ?>
+                                <?php if (in_array($_SESSION['role'], ['ADMINISTRADOR'])): ?><a href="create.php" class="btn btn-primary"><i class="bi bi-plus-square"></i> Crear materia</a><?php endif; ?>
                             </div>
                         </div>
                         <div class="card-body">

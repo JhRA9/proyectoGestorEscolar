@@ -20,7 +20,7 @@ include('../../config/controllers/roles/listado_roles.php');
             <div class="card-header">
               <h3 class="card-title">Roles registrados</h3>
               <div class="card-tools">
-                <a href="create.php" class="btn btn-dark"> <i class="bi bi-plus-square"></i> Crear nuevo rol </a>
+                <a href="create.php" class="btn btn-dark"> <i class="bi bi-plus-square"></i> Crear rol </a>
               </div>
             </div>
             <div class="card-body">

@@ -144,4 +144,5 @@ $tareasMap = array_map(function ($tarea) {
 }, $tareas);
 
 header('Content-Type: application/json');
-echo json_encode(['data' => $tareas]);
+echo json_encode(['data' => $tareasMap]);
+
