@@ -17,4 +17,3 @@ foreach ($tareas as $tarea) {
         $sentencia->execute([$tarea['id_tarea']]);
     }
 }
-?>

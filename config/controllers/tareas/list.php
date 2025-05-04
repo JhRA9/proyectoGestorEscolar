@@ -145,4 +145,3 @@ $tareasMap = array_map(function ($tarea) {
 
 header('Content-Type: application/json');
 echo json_encode(['data' => $tareasMap]);
-

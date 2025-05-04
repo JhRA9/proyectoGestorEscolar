@@ -59,7 +59,7 @@ include('../../layout/mostrarMensajes.php');
 ?>
 
 <script>
-    $(function () {
+    $(function() {
         const role = "<?= $_SESSION['role'] ?>";
 
         function loadTable(order = 'title') {
