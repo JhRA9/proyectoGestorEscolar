@@ -40,6 +40,8 @@ if (count($usuarios) > 0) {
     }
 }
 
-header('location:' . APP_URL . "/login/index.php");
 session_start();
 $_SESSION['mensaje'] = "Los datos son incorrectos, porfavor verifiquelos y vuelva a intentarlo";
+header('location:' . APP_URL . "/login/index.php");
+exit();
+?>

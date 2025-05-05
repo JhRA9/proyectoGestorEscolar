@@ -1,4 +1,5 @@
 <?php
+session_start(); 
 include('../config/config.php');
 ?>
 
@@ -10,15 +11,10 @@ include('../config/config.php');
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title><?= APP_NAME; ?></title>
 
-  <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
-  <!-- Font Awesome -->
   <link rel="stylesheet" href="<?= APP_URL; ?>/public/plugins/fontawesome-free/css/all.min.css">
-  <!-- icheck bootstrap -->
   <link rel="stylesheet" href="<?= APP_URL; ?>/public/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
-  <!-- Theme style -->
   <link rel="stylesheet" href="<?= APP_URL; ?>/public/dist/css/adminlte.min.css">
-  <!-- diseño alerta -->
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -33,8 +29,6 @@ include('../config/config.php');
     <div class="card">
       <div class="card-body login-card-body">
         <p class="login-box-msg">Digite sus credenciales</p>
-
-        <!-- ENVIO DE DATOS -->
 
         <form action="controler_login.php" method="post">
           <div class="input-group mb-3">
@@ -58,36 +52,27 @@ include('../config/config.php');
           </div>
         </form>
 
-        <?php
-        session_start();
-        if (isset($_SESSION['mensaje'])) {
-          $mensaje = $_SESSION['mensaje'];
-        }
-        ?>
-        <script>
-          Swal.fire({
-            position: "center",
-            icon: "error",
-            title: "<?= $mensaje; ?>",
-            showConfirmButton: false,
-            timer: 4000
-          });
-        </script>
-        <?php
-        session_destroy();
-        ?>
+        <!-- Mostrar alerta si hay mensaje -->
+        <?php if (isset($_SESSION['mensaje'])): ?>
+          <script>
+            Swal.fire({
+              position: "center",
+              icon: "error",
+              title: "<?= $_SESSION['mensaje']; ?>",
+              showConfirmButton: false,
+              timer: 4000
+            });
+          </script>
+          <?php unset($_SESSION['mensaje']); ?>
+        <?php endif; ?>
+        
       </div>
-      <!-- /.login-card-body -->
     </div>
   </div>
-  <!-- /.login-box -->
 
-  <!-- jQuery -->
   <script src="<?= APP_URL; ?>/public/plugins/jquery/jquery.min.js"></script>
-  <!-- Bootstrap 4 -->
   <script src="<?= APP_URL; ?>/public/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
-  <!-- AdminLTE App -->
   <script src="<?= APP_URL; ?>/public/dist/js/adminlte.min.js"></script>
-</body>
 
+</body>
 </html>
