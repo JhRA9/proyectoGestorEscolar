@@ -36,29 +36,30 @@ except Exception as e:
     driver.quit()
     exit()
 
-# Flujo 2: Crear una nueva materia
+# Flujo 2: Eliminar una materia existente
 try:
-    print("Probando creación de una nueva materia...")
-    driver.get("http://localhost/proyectoEscuela/admin/materias/create.php")
-    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "nombre_materia")))
+    print("Probando eliminación de una materia existente...")
+    driver.get("http://localhost/proyectoEscuela/admin/materias/index.php")
+    WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.ID, "example1")))
 
-    # Lleno el formulario de creación
-    driver.find_element(By.NAME, "nombre_materia").send_keys("Materia de Prueba")
-    driver.find_element(By.NAME, "descripcion").send_keys("Descripción de prueba para la materia.")
-    capturar_pantalla("flujo2_formulario_completado")
+    # Selecciono el primer botón de eliminación disponible
+    boton_eliminar = driver.find_element(By.XPATH, "//button[contains(@onclick, 'preguntar')]")
+    boton_eliminar.click()
 
-    # Envío el formulario
-    driver.find_element(By.XPATH, "//button[contains(text(), 'Guardar Materia')]").click()
-    WebDriverWait(driver, 10).until(lambda d: "admin/materias" in d.current_url)
-    capturar_pantalla("flujo2_materia_creada")
-    print("Flujo 2: Creación de materia - PASÓ")
+    # Confirmo la eliminación en el modal de SweetAlert
+    WebDriverWait(driver, 10).until(EC.visibility_of_element_located((By.CLASS_NAME, "swal2-confirm"))).click()
+
+    # Verifico que la materia desaparezca de la lista
+    WebDriverWait(driver, 10).until_not(EC.presence_of_element_located((By.XPATH, "//td[contains(text(), 'Materia de Prueba')]")))
+    capturar_pantalla("flujo2_materia_eliminada")
+    print("Flujo 2: Eliminación de materia - PASÓ")
 except Exception as e:
     capturar_pantalla("flujo2_error")
-    print(f"Flujo 2: Creación de materia - FALLÓ: {e}")
+    print(f"Flujo 2: Eliminación de materia - FALLÓ: {e}")
 
-# Flujo 3: Intento de creación por un usuario sin permisos
+# Flujo 3: Intento de eliminación por un usuario sin permisos
 try:
-    print("Probando creación de materia por un usuario sin permisos...")
+    print("Probando eliminación de materia por un usuario sin permisos...")
     driver.get("http://localhost/proyectoEscuela/login/logout.php")  # Cierro sesión del administrador
     WebDriverWait(driver, 10).until(EC.presence_of_element_located((By.NAME, "email")))
 
@@ -68,18 +69,19 @@ try:
     driver.find_element(By.NAME, "password").send_keys(Keys.RETURN)
     WebDriverWait(driver, 10).until(lambda d: "admin" in d.current_url)
 
-    # Intento acceder a la página de creación de materias
-    driver.get("http://localhost/proyectoEscuela/admin/materias/create.php")
+    # Intento acceder al botón de eliminación
+    driver.get("http://localhost/proyectoEscuela/admin/materias/index.php")
     capturar_pantalla("flujo3_acceso_denegado")
 
-    # Verifico si el usuario fue redirigido al home.php
-    if "home.php" in driver.current_url or "http://localhost/proyectoEscuela//admin/home.php" in driver.current_url:
-        print("Flujo 3: Creación por usuario sin permisos - PASÓ: El usuario fue redirigido al home.")
+    # Verifico si el botón de eliminación está presente
+    botones_eliminar = driver.find_elements(By.XPATH, "//button[contains(@onclick, 'preguntar')]")
+    if len(botones_eliminar) == 0:
+        print("Flujo 3: Eliminación por usuario sin permisos - PASÓ: El usuario no tiene acceso al botón de eliminación.")
     else:
-        print("Flujo 3: Creación por usuario sin permisos - FALLÓ: El usuario no fue redirigido correctamente.")
+        print("Flujo 3: Eliminación por usuario sin permisos - FALLÓ: El usuario tiene acceso al botón de eliminación.")
 except Exception as e:
     capturar_pantalla("flujo3_error")
-    print(f"Flujo 3: Creación por usuario sin permisos - FALLÓ: {e}")
+    print(f"Flujo 3: Eliminación por usuario sin permisos - FALLÓ: {e}")
 
 # Cierro el navegador después de realizar las pruebas
 driver.quit()
