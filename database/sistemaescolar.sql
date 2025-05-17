@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 28-02-2025 a las 22:27:43
+-- Tiempo de generación: 17-05-2025 a las 01:35:38
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.2.12
+-- Versión de PHP: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -33,15 +33,6 @@ CREATE TABLE `archivos` (
   `ruta_archivo` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_spanish_ci;
 
---
--- Volcado de datos para la tabla `archivos`
---
-
-INSERT INTO `archivos` (`id`, `id_tarea`, `ruta_archivo`) VALUES
-(7, 51, 'Gato.jpg'),
-(8, 52, 'Gato2.PNG'),
-(12, 60, 'Gato2.PNG');
-
 -- --------------------------------------------------------
 
 --
@@ -61,10 +52,10 @@ CREATE TABLE `materias` (
 --
 
 INSERT INTO `materias` (`id_materia`, `nombre_materia`, `hora_creacion`, `hora_actualizacion`, `estado`) VALUES
-(1, 'MATEMÁTICA', '2023-12-28 20:29:10', '2025-02-24 15:51:23', '1'),
 (3, 'LENGUAJE', '2025-02-24 15:52:21', NULL, '1'),
 (4, 'CIENCIAS', '2025-02-25 07:53:03', NULL, '1'),
-(6, 'INGLES', '2025-02-25 13:10:28', NULL, '1');
+(6, 'INGLES', '2025-02-25 13:10:28', NULL, '1'),
+(33, 'Materia de Prueba', '2025-05-06 20:24:46', NULL, '1');
 
 -- --------------------------------------------------------
 
@@ -79,18 +70,6 @@ CREATE TABLE `notificaciones` (
   `fecha_creacion` datetime NOT NULL DEFAULT current_timestamp(),
   `leido` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_general_ci;
-
---
--- Volcado de datos para la tabla `notificaciones`
---
-
-INSERT INTO `notificaciones` (`id_notificacion`, `mensaje`, `id_tarea`, `fecha_creacion`, `leido`) VALUES
-(22, 'Se ha creado una nueva tarea en la materia MATEMÁTICA: Tarea 7', 51, '2025-02-28 13:34:30', 0),
-(23, 'Se ha creado una nueva tarea en la materia MATEMÁTICA: Tarea 8', 52, '2025-02-28 13:34:42', 0),
-(24, 'Se ha creado una nueva tarea en la materia MATEMÁTICA: Tarea 9', 53, '2025-02-28 13:34:53', 0),
-(27, 'Se ha creado una nueva tarea en la materia LENGUAJE: Tarea 1', 56, '2025-02-28 15:46:02', 0),
-(33, 'Se ha creado una nueva tarea en la materia INGLES: prueba 123', 60, '2025-02-28 16:08:39', 0),
-(34, 'La tarea \'prueba 123\' de la materia \'INGLES\' está próxima a vencer.', 60, '2025-02-28 16:08:39', 0);
 
 -- --------------------------------------------------------
 
@@ -111,9 +90,10 @@ CREATE TABLE `roles` (
 --
 
 INSERT INTO `roles` (`id_rol`, `nombre_rol`, `hora_creacion`, `hora_actualizacion`, `estado`) VALUES
-(1, 'ADMINISTRADOR', '2025-02-19 11:07:00', '2025-02-25 00:49:01', '1'),
+(1, 'ADMINISTRADOR', '2025-02-19 11:07:00', '2025-05-06 21:30:34', '1'),
 (2, 'PROFESOR', '2025-02-19 11:07:00', NULL, '1'),
-(4, 'ESTUDIANTE', '2025-02-23 20:27:29', '2025-02-25 19:07:04', '1');
+(4, 'ESTUDIANTE', '2025-02-23 20:27:29', '2025-02-25 19:07:04', '1'),
+(20, 'ROL EDITADO', '2025-05-07 14:48:50', '2025-05-08 08:35:37', '1');
 
 -- --------------------------------------------------------
 
@@ -138,11 +118,7 @@ CREATE TABLE `tareas` (
 --
 
 INSERT INTO `tareas` (`id_tarea`, `titulo`, `descripcion`, `fecha_entrega`, `estado`, `hora_creacion`, `hora_actualizacion`, `id_materia`, `hora_entrega`) VALUES
-(51, 'Tarea 7', 'Tarea 7', '2025-03-08', 'completado', '2025-02-28 13:34:30', NULL, 1, '19:34:00'),
-(52, 'Tarea 8', 'Tarea 8', '2025-03-07', 'completado', '2025-02-28 13:34:42', NULL, 1, '19:34:00'),
-(53, 'Tarea 9', 'Tarea 9', '2025-03-06', 'Pendiente', '2025-02-28 13:34:53', NULL, 1, '13:38:00'),
-(56, 'Tarea 1', 'descripcion 2', '2025-02-28', 'Pendiente', '2025-02-28 15:46:02', NULL, 3, '17:46:00'),
-(60, 'prueba 123', 'prueba 123', '2025-03-02', 'completado', '2025-02-28 16:08:39', NULL, 6, '17:08:00');
+(98, 'Tarea de prueba', 'Descripción de prueba para la tarea.', '2025-05-10', 'Pendiente', '2025-05-06 15:31:23', NULL, 3, '23:59:00');
 
 -- --------------------------------------------------------
 
@@ -166,9 +142,10 @@ CREATE TABLE `usuarios` (
 --
 
 INSERT INTO `usuarios` (`id_usuario`, `nombres`, `rol_id`, `email`, `password`, `hora_creacion`, `hora_actualizacion`, `estado`) VALUES
-(32, 'Jhon Perez', 1, 'admin@admin.com', '$2y$10$RZSdTIlV2uRV2nKGsfv36uvT67UYqxHsuI8z1QmEGFqm5tg6vsgEe', '2025-02-23 22:29:36', '2025-02-24 09:08:09', '1'),
+(32, 'Jhon Perez', 1, 'admin@admin.com', '$2y$10$RZSdTIlV2uRV2nKGsfv36uvT67UYqxHsuI8z1QmEGFqm5tg6vsgEe', '2025-02-23 22:29:36', '2025-05-07 15:47:04', '1'),
 (39, 'PROFESOR', 2, 'profesor@gmail.com', '$2y$10$H3/ZpSzL4jdNMelvONVOVORKcvuTe7r7HZorOBEt4pFFEaYIVPUHy', '2025-02-24 15:57:58', '2025-02-28 09:26:43', '1'),
-(41, 'estudiante', 4, 'estudiante@gmail.com', '$2y$10$RZSdTIlV2uRV2nKGsfv36uvT67UYqxHsuI8z1QmEGFqm5tg6vsgEe', '2025-02-25 07:54:45', '2025-02-28 09:26:58', '1');
+(41, 'estudiante', 4, 'estudiante@gmail.com', '$2y$10$RZSdTIlV2uRV2nKGsfv36uvT67UYqxHsuI8z1QmEGFqm5tg6vsgEe', '2025-02-25 07:54:45', '2025-02-28 09:26:58', '1'),
+(48, 'prueba2', 1, 'admin2@admin.com', '$2y$10$ixh5ZWatx5bfyw9oIv.i.u6H0B.CRiSXrXIgw1NqW6bhbdjZ3Hjom', '2025-05-06 21:26:42', NULL, '1');
 
 --
 -- Índices para tablas volcadas
@@ -224,37 +201,37 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de la tabla `archivos`
 --
 ALTER TABLE `archivos`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=16;
 
 --
 -- AUTO_INCREMENT de la tabla `materias`
 --
 ALTER TABLE `materias`
-  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `id_materia` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT de la tabla `notificaciones`
 --
 ALTER TABLE `notificaciones`
-  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id_notificacion` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=91;
 
 --
 -- AUTO_INCREMENT de la tabla `roles`
 --
 ALTER TABLE `roles`
-  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id_rol` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT de la tabla `tareas`
 --
 ALTER TABLE `tareas`
-  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `id_tarea` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de la tabla `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=42;
+  MODIFY `id_usuario` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=49;
 
 --
 -- Restricciones para tablas volcadas
