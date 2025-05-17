@@ -1,6 +1,6 @@
 <?php
 session_start(); 
-include('../config/config.php');
+include('config/config.php');
 ?>
 
 <!DOCTYPE html>
@@ -21,7 +21,7 @@ include('../config/config.php');
 <body class="hold-transition login-page">
   <div class="login-box">
     <center>
-      <img src="<?= APP_URL ?>/public/img/logeo.png" width="300px" alt="">
+      <img src="<?= APP_URL ?>public/img/logeo.png" width="300px" alt="">
     </center>
     <div class="login-logo">
       <h3><b><?= APP_NAME ?></b></h3>

@@ -35,4 +35,4 @@
     $anioActual = date('Y');
     $estadoRegistro = 1;
 
-    // echo "Se recuerda que la semana pasada se dejo una tarea para el dia ".$diaActual." del mes ".$mesActual." del año ".$anioActual;
+    

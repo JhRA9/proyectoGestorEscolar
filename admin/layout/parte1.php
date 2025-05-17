@@ -13,21 +13,21 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title><?= APP_NAME; ?>/</title>
+  <title><?= APP_NAME; ?></title>
 
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome Icons -->
-  <link rel="stylesheet" href="<?= APP_URL; ?>/public/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="<?= APP_URL; ?>public/plugins/fontawesome-free/css/all.min.css">
   <!-- Theme style -->
-  <link rel="stylesheet" href="<?= APP_URL; ?>/public/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="<?= APP_URL; ?>public/dist/css/adminlte.min.css">
   <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
   <!-- Bootstrap CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
   <!-- DATATABLE -->
-  <link rel="stylesheet" href="<?= APP_URL; ?>/public/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?= APP_URL; ?>/public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
-  <link rel="stylesheet" href="<?= APP_URL; ?>/public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= APP_URL; ?>public/plugins/datatables-bs4/css/dataTables.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= APP_URL; ?>public/plugins/datatables-responsive/css/responsive.bootstrap4.min.css">
+  <link rel="stylesheet" href="<?= APP_URL; ?>public/plugins/datatables-buttons/css/buttons.bootstrap4.min.css">
   <style>
     .dropdown-item {
       white-space: normal;
@@ -47,7 +47,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
           <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
         </li>
         <li class="nav-item d-none d-sm-inline-block">
-          <a href="<?= APP_URL; ?>/admin" class="nav-link"><?= APP_NAME; ?></a>
+          <a href="<?= APP_URL; ?>admin" class="nav-link"><?= APP_NAME; ?></a>
         </li>
       </ul>
 
@@ -83,7 +83,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
     <aside class="main-sidebar sidebar-dark-primary elevation-4">
       <!-- Brand Logo -->
       <a href="<?= $url_home; ?>" class="brand-link">
-        <img src="<?= APP_URL ?>/public/img/iconoPrincipal.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
+        <img src="<?= APP_URL ?>public/img/iconoPrincipal.jpg" alt="AdminLTE Logo" class="brand-image img-circle elevation-3" style="opacity: .8">
         <span class="brand-text font-weight-light">San Francisco de Asís</span>
       </a>
 
@@ -93,7 +93,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
         <!-- Sidebar user panel (optional) -->
         <div class="user-panel mt-3 pb-3 mb-3 d-flex">
           <div class="image">
-            <img src="<?= APP_URL ?>/public/img/usuarioAdmin.png" class="img-circle elevation-2" alt="User Image">
+            <img src="<?= APP_URL ?>public/img/usuarioAdmin.png" class="img-circle elevation-2" alt="User Image">
           </div>
           <div class="info">
             <a href="#" class="d-block"><?= $nombre_sesion_usuario; ?></a>
@@ -115,7 +115,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="<?= APP_URL; ?>/admin/roles" class="nav-link">
+                    <a href="<?= APP_URL; ?>admin/roles" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Listado de roles</p>
                     </a>
@@ -131,7 +131,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
                 </a>
                 <ul class="nav nav-treeview">
                   <li class="nav-item">
-                    <a href="<?= APP_URL; ?>/admin/usuarios" class="nav-link">
+                    <a href="<?= APP_URL; ?>admin/usuarios" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>Listado de usuarios</p>
                     </a>
@@ -148,7 +148,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?= APP_URL; ?>/admin/materias" class="nav-link">
+                  <a href="<?= APP_URL; ?>admin/materias" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Listado de materias</p>
                   </a>
@@ -166,7 +166,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
               </a>
               <ul class="nav nav-treeview">
                 <li class="nav-item">
-                  <a href="<?= APP_URL; ?>/admin/tareas/" class="nav-link">
+                  <a href="<?= APP_URL; ?>admin/tareas/" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>Listado de tareas</p>
                   </a>
@@ -175,7 +175,7 @@ $nombre_sesion_usuario = $_SESSION['name']         ?? 'Invitado';
             </li>
 
             <li class="nav-item">
-              <a href="<?= APP_URL; ?>/login/logout.php" class="nav-link" style="background-color: #eb2d14;">
+              <a href="<?= APP_URL; ?>/logout.php" class="nav-link" style="background-color: #eb2d14;">
                 <i class="bi bi-door-open"></i>
                 <p>
                   Cerrar sesion

@@ -2,7 +2,7 @@
 
 use Dom\Entity;
 
-include('../config/config.php');
+include('config/config.php');
 $email = $_POST['email'];
 $password = $_POST['password'];
 
@@ -32,9 +32,9 @@ if (count($usuarios) > 0) {
         }
 
         if ($role === 'ADMINISTRADOR') {
-            header('location:' . APP_URL . "/admin/index.php");
+            header('location:' . APP_URL . "admin/index.php");
         } else {
-            header('location:' . APP_URL . "/admin/home.php");
+            header('location:' . APP_URL . "admin/home.php");
         }
         return;
     }
@@ -42,6 +42,6 @@ if (count($usuarios) > 0) {
 
 session_start();
 $_SESSION['mensaje'] = "Los datos son incorrectos, porfavor verifiquelos y vuelva a intentarlo";
-header('location:' . APP_URL . "/login/index.php");
+header('location:' . APP_URL . "index.php");
 exit();
 ?>

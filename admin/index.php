@@ -4,12 +4,12 @@ include '../config/config.php';
 session_start();
 
 if (!isset($_SESSION['admin']) && !isset($_SESSION['sesion email'])) {
-    header('Location: ' . APP_URL . '/login/index.php');
+    header('Location: ' . APP_URL . 'index.php');
     exit;
 }
 
 if ($_SESSION['role'] !== 'ADMINISTRADOR') {
-    header('Location: ' . APP_URL . '/admin/home.php');
+    header('Location: ' . APP_URL . 'admin/home.php');
     exit;
 }
 
@@ -46,7 +46,7 @@ include('../config/controllers/tareas/index.php');
             <div class="icon">
               <i class="fas bi-bookmarks"></i>
             </div>
-            <a href="<?= APP_URL; ?>/admin/roles" class="small-box-footer">
+            <a href="<?= APP_URL; ?>admin/roles" class="small-box-footer">
               Mas informacion <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -68,7 +68,7 @@ include('../config/controllers/tareas/index.php');
             <div class="icon">
               <i class="fas bi-people-fill"></i>
             </div>
-            <a href="<?= APP_URL; ?>/admin/usuarios" class="small-box-footer">
+            <a href="<?= APP_URL; ?>admin/usuarios" class="small-box-footer">
               Mas informacion <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -89,7 +89,7 @@ include('../config/controllers/tareas/index.php');
             <div class="icon">
               <i class="fas"><i class="bi bi-bookshelf"></i></i></i>
             </div>
-            <a href="<?= APP_URL; ?>/admin/materias" class="small-box-footer">
+            <a href="<?= APP_URL; ?>admin/materias" class="small-box-footer">
               Más información <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
@@ -110,7 +110,7 @@ include('../config/controllers/tareas/index.php');
             <div class="icon">
               <i class="fas"><i class="bi bi-plus-slash-minus"></i></i></i></i>
             </div>
-            <a href="<?= APP_URL; ?>/admin/tareas" class="small-box-footer">
+            <a href="<?= APP_URL; ?>admin/tareas" class="small-box-footer">
               Más información <i class="fas fa-arrow-circle-right"></i>
             </a>
           </div>
