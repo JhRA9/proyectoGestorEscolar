@@ -4,18 +4,17 @@
 
 
     // ACCESO A LA BASE DE DATOS
-    define('SERVIDOR', 'shinkansen.proxy.rlwy.net'); 
+    define('SERVIDOR', 'yamabiko.proxy.rlwy.net'); 
     define('USUARIO', 'root'); 
-    define('PASSWORD', 'pJgQLAUdvZkRtMuyECIdRhLEkbsXsJqc'); 
-    define('BD', 'sistemaescolar'); 
-    define('PUERTO', '42003'); 
+    define('PASSWORD', 'oXQptioFjIvytuBtmHdHCKlljoWQddTA'); 
+    define('BD', 'sistemaescolar');
+    define('PUERTO', '24586'); 
 
     // RUTAS
     define('APP_NAME', 'SISTEMA DE GESTION ESCOLAR');
-    define('APP_URL','http://localhost/proyectoEscuela/');
+    define('APP_URL', 'http://localhost/proyectoEscuela/');
 
     // CONEXION BD
-
     $servidor = "mysql:dbname=".BD.";host=".SERVIDOR.";port=".PUERTO;
 
     try {
