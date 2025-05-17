@@ -4,11 +4,11 @@
 
 
     // ACCESO A LA BASE DE DATOS
-    define('SERVIDOR', 'yamabiko.proxy.rlwy.net'); 
+    define('SERVIDOR', 'shuttle.proxy.rlwy.net'); 
     define('USUARIO', 'root'); 
-    define('PASSWORD', 'oXQptioFjIvytuBtmHdHCKlljoWQddTA'); 
+    define('PASSWORD', 'luheoEFwVaGiHuRQqOrBfPOIAbEVlSaf'); 
     define('BD', 'sistemaescolar');
-    define('PUERTO', '24586'); 
+    define('PUERTO', '22985'); 
 
     // RUTAS
     define('APP_NAME', 'SISTEMA DE GESTION ESCOLAR');
