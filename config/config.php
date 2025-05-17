@@ -4,19 +4,19 @@
 
 
     // ACCESO A LA BASE DE DATOS
-    define('SERVIDOR', 'localhost');
-    define('USUARIO', 'root');
-    define('PASSWORD', '');
-    define('BD', 'sistemaescolar');
+    define('SERVIDOR', 'shinkansen.proxy.rlwy.net'); 
+    define('USUARIO', 'root'); 
+    define('PASSWORD', 'pJgQLAUdvZkRtMuyECIdRhLEkbsXsJqc'); 
+    define('BD', 'sistemaescolar'); 
+    define('PUERTO', '42003'); 
 
     // RUTAS
     define('APP_NAME', 'SISTEMA DE GESTION ESCOLAR');
     define('APP_URL','http://localhost/proyectoEscuela/');
-    // define('KEY_API_MAPS','');
 
     // CONEXION BD
 
-    $servidor = "mysql:dbname=".BD.";host=".SERVIDOR;
+    $servidor = "mysql:dbname=".BD.";host=".SERVIDOR.";port=".PUERTO;
 
     try {
         $pdo = new PDO($servidor, USUARIO, PASSWORD);
